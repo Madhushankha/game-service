@@ -19,7 +19,7 @@ public class GamesController : ControllerBase
         return game is not null ? Ok(game) : NoContent();
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("id")]
     public async Task<IActionResult> GetById(string id)
     {
         var game = await _service.GetByIdDetachedAsync(id);
@@ -30,7 +30,7 @@ public class GamesController : ControllerBase
     public async Task<IActionResult> ListAll()
         => Ok(await _service.ListAllDetachedAsync());
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("id")]
     public async Task<IActionResult> Update(string id, GameModel dto)
     {
         if (id != dto.Id) return BadRequest();
@@ -38,7 +38,7 @@ public class GamesController : ControllerBase
         return updated ? NoContent() : NotFound();
     }
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("id")]
     public async Task<IActionResult> Delete(string id)
     {
         var deleted = await _service.DeleteAsync(id);
