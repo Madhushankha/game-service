@@ -18,7 +18,7 @@ namespace GameService.Tests
         {
             // Create a unique in-memory database for each test
             var dbContextOptions = new DbContextOptionsBuilder<GameDbContext>()
-                 .UseInMemoryDatabase(databaseName: "games")
+                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                  .Options;
             _gameDbContext = new GameDbContext(dbContextOptions);
         }
